@@ -12,7 +12,6 @@ define("GLOBAL_PLUGIN_URL",  plugin_dir_url(__FILE__));
 define("GLOBAL_PLUGIN_DIR",  plugin_dir_path(__FILE__));
 
 add_action("init", function () {
-
     /**
      * load necessary files
      */
@@ -20,6 +19,7 @@ add_action("init", function () {
     require_once(GLOBAL_PLUGIN_DIR . "class-bloat.php");
     require_once(GLOBAL_PLUGIN_DIR . "class-rest.php");
     require_once(GLOBAL_PLUGIN_DIR . "class-style.php");
+
 }, 1);
 
 /**
@@ -27,3 +27,4 @@ add_action("init", function () {
  */
 add_action("rest_api_init", "REST::registerMeta");
 add_action("admin_menu", "Bloat::removeMenuItems");
+add_action("init", "Style::load");
