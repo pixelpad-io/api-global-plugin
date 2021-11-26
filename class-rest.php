@@ -5,13 +5,31 @@ class REST {
     }
 
     /**
-     * register assets field for callback
+     * register custom post "meta fields" for callback
      */
     public static function registerMeta() {
-        register_rest_field('assets', 'postMeta', array(
-            'get_callback' => function ($data) {
-                return get_post_meta($data['id']);
-            },
-        ));
+
+        $customPosts = array(
+            "assets", 
+            "gamejam", "gamejamteam", "gamejamreview",
+            "notif",
+            "district", "school","classroom",
+            "comment",
+            "pp-project",
+            "classes",
+            "pp-course",
+            "reports",
+            "pixelpack",
+            "ftcchallenge",
+            "ftcsubmission"
+        );
+
+        foreach ($customPosts as $customPost) {
+            register_rest_field($customPost, 'postMeta', array(
+                'get_callback' => function ($data) {
+                    return get_post_meta($data['id']);
+                },
+            ));
+        }
     }
 }
