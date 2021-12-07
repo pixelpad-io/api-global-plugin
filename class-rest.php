@@ -19,9 +19,8 @@ class REST {
             "classes",
             "pp-course",
             "reports",
-            "pixelpack",
-            "ftcchallenge",
-            "ftcsubmission"
+            "pixelpacks",
+            "ftcchallenge", "ftcsubmission"
         );
 
         foreach ($customPosts as $customPost) {
