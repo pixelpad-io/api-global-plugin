@@ -19,6 +19,7 @@ add_action("init", function () {
     require_once(GLOBAL_PLUGIN_DIR . "class-bloat.php");
     require_once(GLOBAL_PLUGIN_DIR . "class-rest.php");
     require_once(GLOBAL_PLUGIN_DIR . "class-style.php");
+    require_once(GLOBAL_PLUGIN_DIR . "class-import.php");
 
 }, 1);
 

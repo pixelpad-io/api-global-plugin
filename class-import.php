@@ -2,15 +2,15 @@
 
 namespace PIXELPAD;
 
-//add_action("admin_head", array("\PIXELPAD\Import::add_classrooms"));
+//add_action("admin_head", "\PIXELPAD\Import::importXML");
 
 /**
  * import classrooms through wordpress xml
  */
 class Import {
 
-    public static function add_classrooms() {
-        $file = dirname(dirname(dirname(dirname(__FILE__)))) . "/classrooms.xml";
+    public static function importXML() {
+        $file = dirname(__FILE__) . "/notifs.xml";
         $classrooms = simplexml_load_file($file, "SimpleXMLElement", LIBXML_NOCDATA);
 
         foreach ($classrooms->channel->item as $item) {
