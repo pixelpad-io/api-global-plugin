@@ -3,7 +3,7 @@
 namespace PIXELPAD;
 
 add_action("admin_head", function(){
-    //$file = dirname(__FILE__) . "/submissions.xml";
+    //$file = dirname(__FILE__) . "/comments.xml";
     //$import = new Import($file);
     //$import->importXML();
 
