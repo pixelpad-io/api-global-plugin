@@ -6,12 +6,16 @@
  * Version: 1.0.0
  * Description: Files used in all pixelpad subdomains should be here. Maybe we should move the global plugin to the THEME in the future
  * Text Domain: global-plugin
- * GitHub Plugin URI: https://github.com/pixelpad-io/api-assets
- * 
+ * Author: pixelpad.io
  */
+
+
 
 define("GLOBAL_PLUGIN_URL",  plugin_dir_url(__FILE__));
 define("GLOBAL_PLUGIN_DIR",  plugin_dir_path(__FILE__));
+
+require_once(GLOBAL_PLUGIN_DIR . "class-updater.php");
+$updater = new Updater();
 
 add_action("init", function () {
     /**
@@ -21,7 +25,9 @@ add_action("init", function () {
     require_once(GLOBAL_PLUGIN_DIR . "class-bloat.php");
     require_once(GLOBAL_PLUGIN_DIR . "class-rest.php");
     require_once(GLOBAL_PLUGIN_DIR . "class-style.php");
-    require_once(GLOBAL_PLUGIN_DIR . "class-updater.php");
+    
+    
+
 }, 1);
 
 /**
@@ -30,6 +36,9 @@ add_action("init", function () {
 add_action("rest_api_init", "REST::registerMeta");
 add_action("admin_menu", "Bloat::removeMenuItems");
 add_action("admin_head", "Style::load");
+add_action("admin_init", function(){
+    
+});
 
-add_filter("plugins_api", "\PIXELPAD\Updater::load");
-//add_filter("site_transient_update_plugins", "misha_push_update");
+
+
