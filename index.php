@@ -31,4 +31,5 @@ add_action("rest_api_init", "REST::registerMeta");
 add_action("admin_menu", "Bloat::removeMenuItems");
 add_action("admin_head", "Style::load");
 
-add_action("plugins_api", "\PIXELPAD\Updater::load");
+add_filter("plugins_api", "\PIXELPAD\Updater::load");
+//add_filter("site_transient_update_plugins", "misha_push_update");
