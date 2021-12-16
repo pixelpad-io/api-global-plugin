@@ -15,7 +15,7 @@ define("GLOBAL_PLUGIN_URL",  plugin_dir_url(__FILE__));
 define("GLOBAL_PLUGIN_DIR",  plugin_dir_path(__FILE__));
 
 require_once(GLOBAL_PLUGIN_DIR . "class-updater.php");
-$updater = new Updater();
+$updater = new \Updater();
 
 add_action("init", function () {
     /**
@@ -26,8 +26,6 @@ add_action("init", function () {
     require_once(GLOBAL_PLUGIN_DIR . "class-rest.php");
     require_once(GLOBAL_PLUGIN_DIR . "class-style.php");
     
-    
-
 }, 1);
 
 /**
@@ -36,9 +34,6 @@ add_action("init", function () {
 add_action("rest_api_init", "REST::registerMeta");
 add_action("admin_menu", "Bloat::removeMenuItems");
 add_action("admin_head", "Style::load");
-add_action("admin_init", function(){
-    
-});
 
 
 

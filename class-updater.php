@@ -51,22 +51,16 @@ class Updater {
     }
 
     public function update($transient) {
+
         if (empty($transient->checked)) {
             return $transient;
         }
 
         $remote = $this->request();
-
-        if (
-            $remote
-            && version_compare($this->version, $remote->version, "<")
-            && version_compare($remote->requires, get_bloginfo("version"), "<")
-            && version_compare($remote->requires_php, PHP_VERSION, "<")
-        ) {
+        if ($remote && version_compare($this->version, $remote->version, "<")) {
             $res = new stdClass();
             $res->slug = $this->plugin_slug;
             $res->plugin = plugin_basename(GLOBAL_PLUGIN_DIR . "index.php");
-            error_log($res->plugin);
             $res->new_version = $remote->version;
             $res->tested = $remote->tested;
             $res->package = $remote->download_url;
