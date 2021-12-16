@@ -2,51 +2,19 @@
 
 namespace PIXELPAD;
 
-add_action("admin_head", function(){
-    //$file = dirname(__FILE__) . "/comments.xml";
-    //$import = new Import($file);
-    //$import->importXML();
-
-});
+//add_action("admin_head", array("\PIXELPAD\Import::add_classrooms"));
 
 /**
  * import classrooms through wordpress xml
  */
 class Import {
 
-    public function __construct($file){
-        $this->file = $file;
-        $this->XMLElements = simplexml_load_file($this->file, "SimpleXMLElement", LIBXML_NOCDATA);
-        $this->authors = $this->get_authors();
-    }
+    public static function add_classrooms() {
+        $file = dirname(dirname(dirname(dirname(__FILE__)))) . "/classrooms.xml";
+        $classrooms = simplexml_load_file($file, "SimpleXMLElement", LIBXML_NOCDATA);
 
-    /**
-     * $login is hashed with md5 in case login has @ symbols, and php does not support associative arrays with @ symbols
-     */
-    public function get_author_id_from_login($login){
-        return $this->authors[md5($login)];
-    }
-
-    public function get_authors(){
-        $allAuthors = array();
-        foreach($this->XMLElements->channel as $user){
-            $wp = $user->children("http://wordpress.org/export/1.2/");
-            foreach($wp->author as $author){
-                //$login is hashed with md5 in case login has @ symbols, and php does not support associative arrays with @ symbols
-                $allAuthors += array(
-                    md5($author->author_login) => $author->author_id->__toString()
-                );
-            }
-        }
-        return $allAuthors;
-    }
-
-    public function importXML() {
-        foreach ($this->XMLElements->channel->item as $item) {
+        foreach ($classrooms->channel->item as $item) {
             $wp = $item->children("http://wordpress.org/export/1.2/");
-            $dc = $item->children("http://purl.org/dc/elements/1.1/");
-
-            $postAuthor = $this->get_author_id_from_login($dc->creator->__toString());
             $postDate = $wp->post_date->__toString();
             $postDateGMT = $wp->post_date_gmt->__toString();
             $postModified = $wp->post_modified->__toString();
@@ -59,7 +27,7 @@ class Import {
 
             $post_data = array(
                 "post_title" => $postTitle,
-                "post_author" => $postAuthor,
+                "post_author" => 1,
                 "post_date" => $postDate,
                 "post_date_gmt" => $postDateGMT,
                 "post_modified" => $postModified,
