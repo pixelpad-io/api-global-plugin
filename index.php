@@ -35,6 +35,6 @@ add_action("admin_menu", "Bloat::removeMenuItems");
 add_action("admin_head", "Style::load");
 add_action("admin_init", function(){
     $updater = new \Updater();
-})
+});
 
 
