@@ -6,11 +6,10 @@ class Updater {
     public $version;
 
     public function __construct() {
-
         $this->plugin_slug = plugin_basename(dirname(GLOBAL_PLUGIN_DIR));
-        $this->plugin_data_file = plugin_basename(GLOBAL_PLUGIN_DIR . "index.php");
+        $this->plugin_data_file = GLOBAL_PLUGIN_DIR . "index.php";
         $this->plugin_data = get_plugin_data( $this->plugin_data_file );
-        $this->version = $this->plugin_data['Version'];;
+        $this->version = $this->plugin_data['Version'];
         $this->jsonURL = "https://raw.githubusercontent.com/pixelpad-io/api-global-plugin/master/info.json";
 
         add_filter("plugins_api", array($this, "info"), 20, 3);
