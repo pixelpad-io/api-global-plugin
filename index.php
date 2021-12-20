@@ -3,7 +3,7 @@
 /**
  * Plugin Name: PixelPAD Global Plugin
  * Date: Nov 2021
- * Version: 1.0.9
+ * Version: 1.0.10
  * Description: Files used in all pixelpad subdomains should be here. Maybe we should move the global plugin to the THEME in the future
  * Text Domain: global-plugin
  * Author: pixelpad.io
@@ -35,7 +35,7 @@ add_action("rest_api_init", "REST::registerMeta");
 add_action("admin_menu", "Bloat::removeMenuItems");
 add_action("admin_head", "Style::load");
 add_action("admin_init", function(){
-    $updater = new \Updater();
+    $updater = new Updater();
 });
 
 
