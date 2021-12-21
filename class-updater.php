@@ -1,5 +1,7 @@
 <?php
 
+namespace CUSTOMPOSTS;
+
 class Updater {
 
     public $plugin_slug;
@@ -29,7 +31,7 @@ class Updater {
             return false;
         }
 
-        $res = new stdClass();
+        $res = new \stdClass();
 
         $res->name = $remote->name;
         $res->slug = $remote->slug;
@@ -59,7 +61,7 @@ class Updater {
 
         $remote = $this->request();
         if ($remote && version_compare($this->version, $remote->version, "<")) {
-            $res = new stdClass();
+            $res = new \stdClass();
             $res->slug = $this->plugin_slug;
             $res->plugin = plugin_basename(GLOBAL_PLUGIN_DIR . "index.php");
             $res->new_version = $remote->version;

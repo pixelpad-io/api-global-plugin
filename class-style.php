@@ -1,5 +1,7 @@
 <?php
 
+namespace CUSTOMPOSTS;
+
 class Style {
 
     public static function load() {
