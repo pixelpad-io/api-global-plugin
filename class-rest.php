@@ -8,12 +8,11 @@ class REST {
      * register custom post "meta fields" for callback
      */
     public static function registerMeta() {
-
         $customPosts = array(
-            "assets", 
+            "assets",
             "gamejam", "gamejamteam", "gamejamreview",
             "notif",
-            "district", "school","classroom",
+            "district", "school", "classroom",
             "comment",
             "pp-project",
             "classes",
@@ -29,6 +28,18 @@ class REST {
                     return get_post_meta($data['id']);
                 },
             ));
+
+            //add meta key and value to the query
+            add_filter("rest_" . $customPost . "_query", "REST::include_meta_query", 10, 2);
         }
+    }
+
+    public static function include_meta_query($args, $request) {
+        $args += array(
+            'meta_key'   => $request['meta_key'],
+            'meta_value' => $request['meta_value'],
+            'meta_query' => $request['meta_query'],
+        );
+        return $args;
     }
 }
