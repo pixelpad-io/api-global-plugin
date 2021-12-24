@@ -23,7 +23,7 @@ class REST {
         );
 
         foreach ($customPosts as $customPost) {
-            register_rest_field($customPost, 'postMeta', array(
+            register_rest_field($customPost, 'post_meta', array(
                 'get_callback' => function ($data) {
                     return get_post_meta($data['id']);
                 },
