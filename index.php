@@ -3,7 +3,7 @@
 /**
  * Plugin Name: PixelPAD Global Plugin
  * Date: Nov 2021
- * Version: 1.0.19
+ * Version: 1.0.20
  * Description: Files used in all pixelpad subdomains should be here. Maybe we should move the global plugin to the THEME in the future
  * Text Domain: global-plugin
  * Author: pixelpad.io
@@ -23,7 +23,10 @@ add_action("init", function () {
     require_once(GLOBAL_PLUGIN_DIR . "class-rest.php");
     require_once(GLOBAL_PLUGIN_DIR . "class-style.php");
     require_once(GLOBAL_PLUGIN_DIR . "class-updater.php");
+    require_once(GLOBAL_PLUGIN_DIR . "class-import.php");
+    
 }, 1);
+
 
 /**
  * run the classes
@@ -31,6 +34,8 @@ add_action("init", function () {
 add_action("rest_api_init", "REST::registerMeta");
 add_action("admin_menu", "Bloat::removeMenuItems");
 add_action("admin_enqueue_scripts", "\CUSTOMPOSTS\Style::load");
+add_action("admin_menu", "\PIXELPAD\Import::add_admin_menu");
+add_action("admin_init", "\PIXELPAD\Import::get_xml_post");
 add_action("admin_init", function () {
     $updater = new \CUSTOMPOSTS\Updater();
 });
