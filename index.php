@@ -3,7 +3,7 @@
 /**
  * Plugin Name: PixelPAD Global Plugin
  * Date: Nov 2021
- * Version: 1.0.20
+ * Version: 1.0.21
  * Description: Files used in all pixelpad subdomains should be here. Maybe we should move the global plugin to the THEME in the future
  * Text Domain: global-plugin
  * Author: pixelpad.io

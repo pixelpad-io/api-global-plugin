@@ -15,7 +15,7 @@ class REST {
             "district", "school", "classroom",
             "comment",
             "pp-project",
-            "classes",
+            "video",
             "pp-course",
             "reports",
             "pixelpacks",
