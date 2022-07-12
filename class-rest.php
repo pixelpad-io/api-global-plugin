@@ -7,6 +7,7 @@ class REST {
     /**
      * register custom post "meta fields" for callback
      */
+    
     public static function registerMeta() {
         $customPosts = array(
             "assets",
